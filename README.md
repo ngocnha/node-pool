@@ -11,7 +11,7 @@ Breaking changes:
 
 - Removed `borrow` and `returnToPool` functions, these had been deprecated in v2.
 - New resource requests without priority flag now to go back of the queue instead of frint. TODO #74
-- Min pool size can now be same as max pool size, instead of defaulting to max -1. TODO #79
+- Min pool size can now be same as max pool size, instead of defaulting to max -1.
 - `destroy` now calls `pool.release` and `pool.dispense` itself instead of requiring the user
   to call `pool.release` before `destroy`. TODO #80 #30
 
@@ -110,8 +110,7 @@ If you do this, your node process will exit gracefully.
                    max : maximum number of resources to create at any given time
                          optional (default=1)
                    min : minimum number of resources to keep in pool at any given time
-                         if this is set > max, the pool will silently set the min
-                         to factory.max - 1
+                         if this is set > max, the pool will silently set the min to equal max
                          optional (default=0)
            refreshIdle : boolean that specifies whether idle resources at or below the min threshold
                          should be destroyed/re-created.  optional (default=true)
