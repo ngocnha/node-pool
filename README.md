@@ -9,7 +9,7 @@
 
 Breaking changes:
 
-- Removed `borrow` and `returnToPool` functions, these had been deprecated in v2. TODO #84
+- Removed `borrow` and `returnToPool` functions, these had been deprecated in v2.
 - New resource requests without priority flag now to go back of the queue instead of frint. TODO #74
 - Min pool size can now be same as max pool size, instead of defaulting to max -1. TODO #79
 - `destroy` now calls `pool.release` and `pool.dispense` itself instead of requiring the user

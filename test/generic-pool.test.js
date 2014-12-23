@@ -533,7 +533,7 @@ module.exports = {
           assert.equal(logmessages.info[0], 'dispense() clients=1 available=0');
           logmessages.info = [];
           logmessages.verbose = [];
-          pool2.borrow(function(err, obj){
+          pool2.acquire(function(err, obj){
             assert.equal(logmessages.info.length, 0);
             assert.equal(logmessages.verbose.length, 0);
             assert.equal(logmessages.warn.length, 0);
