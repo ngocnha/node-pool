@@ -10,7 +10,7 @@
 Breaking changes:
 
 - Removed `borrow` and `returnToPool` functions, these had been deprecated in v2.
-- New resource requests without priority flag now to go back of the queue instead of frint. TODO #74
+- New resource requests without priority flag now go to back of the queue instead of front.
 - Min pool size can now be same as max pool size, instead of defaulting to max -1.
 - `destroy` now calls `pool.release` and `pool.dispense` itself instead of requiring the user
   to call `pool.release` before `destroy`. TODO #80 #30
@@ -155,7 +155,7 @@ specifies the caller's relative position in the queue.
      priorityRange : 3
  });
 
- // acquire connection - no priority - will go at front of line (same as high priority)
+ // acquire connection - no priority - will go onto end of line
  pool.acquire(function(err, client) {
      pool.release(client);
  });
