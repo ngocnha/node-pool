@@ -204,7 +204,7 @@ module.exports = {
             create  : function(callback) { callback(null, {id: ++created}); },
             destroy : function(client) { destroyed += 1; },
             max : 2,
-            idletimeoutMillis : 300000
+            idleTimeoutMillis : 300000
         });
 
         for (var i = 0; i < count; i++) {
