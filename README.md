@@ -52,7 +52,7 @@ var pool = poolModule.Pool({
 });
 ```
 
-### Step 2 - Use pool in your code to acquire/release resources
+### Step 2 - Use pool in your code to acquire/release/destroy resources
 
 ```js
 // acquire connection - callback function is called
@@ -70,6 +70,24 @@ pool.acquire(function(err, client) {
     }
 });
 ```
+
+Alternatively if you wish to destroy the resource for some reason
+rather than allow the pool to decide what to do with it, you can do the
+following:
+
+```js
+// as above aquire resource etc
+pool.acquire(function(err, client) {
+    // usual error handlering logic here...
+    client.query("select * from foo", [], function() {
+        // return object back to pool to be destroyed
+        pool.destroy(client);
+    });
+});
+```
+
+This can useful in instances where you know the resource is in an invalid state
+because of something like a connection time out.
 
 ### Step 3 - Drain pool during shutdown (optional)
     
@@ -185,8 +203,7 @@ pool.drain(function() {
 });
 ```
 
-One side-effect of calling `drain()` is that subsequent calls to `acquire()`
-will throw an Error.
+One side-effect of calling `drain()` is that subsequent calls to `acquire()` will throw an Error.
 
 ## Pooled function decoration
 
